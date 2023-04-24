@@ -28,4 +28,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ github.repository_owner }}/Transverse_Groupe2:latest,${{ steps.meta.outputs.tags }}
+          tags: ${{ github.repository_owner }}/transverse_groupe2:latest,${{ steps.meta.outputs.tags }}
