@@ -15,14 +15,14 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ghcr.io/LoicDI/publish-packages/game
+          images: ghcr.io/LoicDI/publish-packages/Transverse_Groupe2
           tags: type=sha
       - name: Login to GHCR
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
-          password: ${{ secrets.TOKENGP2 }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build container
         uses: docker/build-push-action@v4
         with:
