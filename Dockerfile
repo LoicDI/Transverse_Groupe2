@@ -14,17 +14,10 @@ RUN apt-get update && \
 
 # PHP Configuration
 RUN docker-php-ext-install bcmath bz2 calendar  dba exif gettext iconv intl  soap tidy xsl zip&&\
-    docker-php-ext-install mysqli pgsql pdo pdo_mysql pdo_pgsql  &&\
+    docker-php-ext-install mysqli pdo pdo_mysql  &&\
     docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp &&\
     docker-php-ext-install gd &&\
-    docker-php-ext-configure imap --with-kerberos --with-imap-ssl &&\
-    docker-php-ext-install imap &&\
     docker-php-ext-configure hash --with-mhash &&\
-    pecl install xdebug && docker-php-ext-enable xdebug &&\
-    pecl install mongodb && docker-php-ext-enable mongodb &&\
-    pecl install redis && docker-php-ext-enable redis && \
-    curl -sS https://getcomposer.org/installer | php \
-            && mv composer.phar /usr/bin/composer
 
 # Apache Configuration
 RUN a2enmod rewrite 
