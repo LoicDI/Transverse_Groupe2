@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -382,9 +380,5 @@
                     reader.readAsArrayBuffer(file);
                 }
             </script>
-            
-        
-        
     </body>
 </html>
-

@@ -354,37 +354,7 @@
                         </label>
                     </li>
                 </ul>
-            </label>
-            <br>
-            <input type="submit" value="Enregistrer la grille">
-        
-            <label>
-                Importer un fichier Excel :
-                <input type="file" id="fileInput" accept=".xlsx, .xls, .html, .htm">
-            </label>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
-            <script>
-                document.getElementById('fileInput').addEventListener('change', handleFile);
-            
-                function handleFile(event) {
-                    const file = event.target.files[0];
-                    const reader = new FileReader();
-            
-                    reader.onload = function(event) {
-                        const data = new Uint8Array(event.target.result);
-                        const workbook = XLSX.read(data, {type: 'array'});
-                        const sheet = workbook.Sheets[workbook.SheetNames[0]];
-                        const htmlTable = XLSX.utils.sheet_to_html(sheet);
-            
-                        document.getElementById('tableOutput').innerHTML = htmlTable;
-                    };
-            
-                    reader.readAsArrayBuffer(file);
-                }
-            </script>
-            
-        
-        
+            </label>        
     </body>
 </html>
 
