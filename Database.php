@@ -1,20 +1,15 @@
 <?php
-// informations de connexion à la base de données
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "transversegp2";
-$port = "3306";
+// Définition des paramètres de la connexion
+$servername = "localhost:3306";; // nom du serveur de base de données
+$username = "root"; // nom d'utilisateur
+$password = ""; // mot de passe
+$dbname = "transversegp2"; // nom de la base de données
 
-try {
-    // Connexion à la base de données avec PDO
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname;port=$port", $username, $password);
-    // Configuration des options de PDO
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    // Affichage d'un message de confirmation si la connexion est réussie
-    echo "Connexion à la base de données réussie";
-} catch(PDOException $e) {
-    // Affichage d'un message d'erreur si la connexion échoue
-    echo "La connexion à la base de données a échoué: " . $e->getMessage();
+// Connexion à la base de données
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Vérification de la connexion
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 ?>
