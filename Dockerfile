@@ -18,16 +18,13 @@ RUN docker-php-ext-install bcmath bz2 calendar  dba exif gettext iconv intl  soa
     docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp &&\
     docker-php-ext-install gd &&\
     docker-php-ext-configure hash --with-mhash &&\
+    curl -sS https://getcomposer.org/installer | php \
+            && mv composer.phar /usr/bin/composer
 
 # Apache Configuration
 RUN a2enmod rewrite 
 
 EXPOSE 80
-
-# Imagemagick : install fails on 8.0
-RUN apt-get install --yes --force-yes libmagickwand-dev libmagickcore-dev
-RUN yes '' | pecl install -f imagick &&\
-    docker-php-ext-enable imagick
 
 COPY php.ini /usr/local/etc/php/
 COPY ./dist/ /var/www/html
