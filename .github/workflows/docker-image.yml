@@ -1,8 +1,5 @@
 name: Publish to Docker
 on:
-  push:
-    branches:
-      - main
   release:
     types: [published]
 permissions:
