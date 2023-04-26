@@ -6,6 +6,6 @@
 </head>
 <body>
 	<h1>Affichage d'un fichier HTML</h1>
-	<iframe src="C:\Users\lolod\Documents\testexcel.htm" width="100%" height="500"></iframe>
+	<iframe src="testexcel.htm" width="100%" height="500"></iframe>
 </body>
 </html>
