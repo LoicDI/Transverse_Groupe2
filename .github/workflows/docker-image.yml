@@ -22,12 +22,9 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Get release tag
-        id: tag_name
-        run: echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
       - name: Build container
         uses: docker/build-push-action@v4
         with:
           context: .
           push: true
-          tags: ghcr.io/loicdi/publish-packages/transverse_groupe2:latest,${{ steps.tag_name.outputs.SOURCE_TAG }}
+          tags: ghcr.io/loicdi/publish-packages/transverse_groupe2:latest,${{ github.event.release.tag_name }}
