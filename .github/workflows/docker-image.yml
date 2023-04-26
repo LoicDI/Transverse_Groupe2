@@ -27,4 +27,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/loicdi/publish-packages/transverse_groupe2:latest,${{ github.event.release.tag_name }}
+          tags: ghcr.io/loicdi/publish-packages/transverse_groupe2:latest,ghcr.io/loicdi/publish-packages/transverse_groupe2:${{ github.event.release.tag_name }}
