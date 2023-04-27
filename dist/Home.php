@@ -1,21 +1,21 @@
 <?php
-require_once 'Database.php';
 
-// Fetch data from the Enterprise table
-$sql = "SELECT id, name FROM Enterprise";
-$result = $conn->query($sql);
+// Fetch data from the Enterprise API
+$apiUrl = "http://localhost/dist/Api.php";
+$enterprisesData = file_get_contents($apiUrl);
+$response = json_decode($enterprisesData, true);
+$entreprises = $response['entreprise'];
 
 // Generate the HTML table rows with the fetched data
 $tableRows = "";
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $tableRows .= "<tr><td>" . $row["id"] . "</td><td>" . $row["name"] . "</td></tr>";
+if (count($entreprises) > 0) {
+    foreach ($entreprises as $entreprises) {
+        $tableRows .= "<tr><td>" . $entreprises["id"] . "</td><td><a href=\"Entreprise.php?id=" . $entreprises["id"] . "\">" . $entreprises["nom"] . "</a></td></tr>";
     }
 } else {
     $tableRows = "<tr><td colspan=\"2\">No enterprises found</td></tr>";
 }
 
-$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -25,12 +25,12 @@ $conn->close();
     <title>Enterprises Table</title>
 </head>
 <body>
-    <h2>Enterprises</h2>
+    <h2>Choix de l'enterprises</h2>
     <table border="1">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>Nom</th>
             </tr>
         </thead>
         <tbody>
@@ -39,4 +39,3 @@ $conn->close();
     </table>
 </body>
 </html>
-
