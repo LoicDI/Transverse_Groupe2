@@ -1,21 +1,21 @@
 <?php
+require_once 'Database.php';
 
-// Fetch data from the Enterprise API
-$apiUrl = "http://localhost/dist/Api.php";
-$enterprisesData = file_get_contents($apiUrl);
-$response = json_decode($enterprisesData, true);
-$enterprises = $response['Enterprise'];
+// Fetch data from the Enterprise table
+$sql = "SELECT id, name FROM Enterprise";
+$result = $conn->query($sql);
 
 // Generate the HTML table rows with the fetched data
 $tableRows = "";
-if (count($enterprises) > 0) {
-    foreach ($enterprises as $enterprise) {
-        $tableRows .= "<tr><td>" . $enterprise["id"] . "</td><td><a href=\"Entreprise.php?id=" . $enterprise["id"] . "\">" . $enterprise["name"] . "</a></td></tr>";
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $tableRows .= "<tr><td>" . $row["id"] . "</td><td>" . $row["name"] . "</td></tr>";
     }
 } else {
     $tableRows = "<tr><td colspan=\"2\">No enterprises found</td></tr>";
 }
 
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +25,7 @@ if (count($enterprises) > 0) {
     <title>Enterprises Table</title>
 </head>
 <body>
-    <h2>Choix de l'enterprises</h2>
+    <h2>Enterprises</h2>
     <table border="1">
         <thead>
             <tr>
@@ -39,3 +39,4 @@ if (count($enterprises) > 0) {
     </table>
 </body>
 </html>
+
