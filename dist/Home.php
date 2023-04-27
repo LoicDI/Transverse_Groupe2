@@ -23,10 +23,54 @@ if (count($entreprises) > 0) {
 <head>
     <meta charset="utf-8">
     <title>Enterprises Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+        
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 80%;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h2>Choix de l'enterprises</h2>
-    <table border="1">
+    <h2>Choix de l'entreprise</h2>
+    <table>
         <thead>
             <tr>
                 <th>ID</th>
