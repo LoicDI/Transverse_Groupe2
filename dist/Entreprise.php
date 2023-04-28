@@ -29,7 +29,7 @@ if (!isset($_GET['id'])) {
 }
 
 $entreprise_id = $_GET['id'];
-$api_url = "http://172.16.47.200/dist/Api.php";
+$api_url = "http://172.16.47.200/Api.php";
 $data = fetchEnterprisesFromAPI($api_url, $entreprise_id);
 $entreprise = $data['entreprise'];
 $items = $data['item'];

@@ -1,7 +1,7 @@
 <?php
 
 // Fetch data from the Enterprise API
-$apiUrl = "http://172.16.47.200/dist/Api.php";
+$apiUrl = "http://172.16.47.200/Api.php";
 $enterprisesData = file_get_contents($apiUrl);
 $response = json_decode($enterprisesData, true);
 $entreprises = $response['entreprise'];
