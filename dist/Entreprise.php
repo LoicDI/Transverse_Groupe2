@@ -62,46 +62,22 @@ $itemlists = $data['itemlist']; // Ajouté pour récupérer itemlists
     <h3><?php echo $entreprise['nom']; ?></h3>
     <p>ID: <?php echo $entreprise['id']; ?></p>
 
-    <?php
-    $axes = [
-        ['id' => 1, 'nom' => 'Compétence'],
-        ['id' => 2, 'nom' => 'Réactivité'],
-        ['id' => 3, 'nom' => 'Numérique']
-    ];
-
-    foreach ($axes as $axe) {
-        $filtered_itemlists = array_filter($itemlists, function($itemlist) use ($axe) {
-            return $itemlist['idAxe'] == $axe['id'];
-        });
-        $filtered_questions = array_filter($questions, function($question) use ($filtered_itemlists) {
-            return in_array($question['idItemlist'], array_column($filtered_itemlists['id'], 'id'));
-        });
-    ?>
-        <h3><?php echo $axe['nom']; ?></h3>
-        <table>
-            <thead>
+    <h3>Items et Questions</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Questions</th>
+                <th>Items</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php for ($i = 0; $i < max(count($items), count($questions)); $i++): ?>
                 <tr>
-                    <th>Questions</th>
-                    <th>Items</th>
+                    <td><?php echo isset($questions[$i]) ? $questions[$i]['question'] : ''; ?></td>
+                    <td><?php echo isset($items[$i]) ? $items[$i]['proposition'] : ''; ?></td>
                 </tr>
-            </thead>
-            <tbody>
-                <?php
-                foreach ($filtered_itemlists as $itemlist) {
-                    $related_questions = array_filter($filtered_questions, function($question) use ($itemlist) {
-                        return $question['idItemlist'] == $itemlist['id'];
-                    });
-
-                    foreach ($related_questions as $question) {
-                        echo "<tr>";
-                        echo "<td>" . $question['question'] . "</td>";
-                        echo "<td>" . $itemlist['proposition'] . "</td>";
-                        echo "</tr>";
-                    }
-                }
-                ?>
-            </tbody>
-        </table>
-    <?php } ?>
+            <?php endfor; ?>
+        </tbody>
+    </table>
 </body>
 </html>
